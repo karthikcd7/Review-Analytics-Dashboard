@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets/img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}" >
+  <title>
+    Review Analytics Dashboard 
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" >
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link type="text/css" href="{{ url_for('static', filename='assets/css/nucleo-icons.css') }}" rel="stylesheet" > 
+  <!-- CSS Files -->
+  <link href="{{ url_for('static', filename='assets/css/black-dashboard.css') }}" rel="stylesheet" >
+  
+  <link href="{{ url_for('static', filename='assets/demo/demo.css') }}" rel="stylesheet" >
+  
+</head>
+
+<body class="">
+  <div class="wrapper">
+
+    <div class="main-panel">  
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            
+            <a class="navbar-brand" href="/" style="font-weight: normal; text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;"><strong>Review Analytics Dashboard</strong></a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto">
+              <li class="input-group">
+                <div class="" style="border: white;">
+                  <form action="{{ url_for('form_app_id') }}" method="post">
+                    <input type="text" placeholder="App ID.." id="inlineFormInputGroup" name="appID" style="border: solid 3px rgb(197, 64, 214); border-radius: 7px; width:250px; height:30px">
+                    <button class="btn btn-link" style="color: white" class="search-button" ><i class="tim-icons icon-zoom-split" ></i>
+                      <span class="d-lg-none d-md-block">Search</span>
+                    </button>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+      <div style="padding-top:70px; padding-left:10px; padding-right:10px;">
+        <div class="row">
+
+          <div class="col-xl-3 col-sm-6">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">App Name</p>
+                      <h5 class="font-weight-bolder mb-0">
+                        {% if data %}
+                          <span class="text-danger text-sm font-weight-bolder">{{ data[11]}}</span>
+                        {% endif %}
+                      </h5>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card" style="width:1100px; padding-right: 10px;">
+              <div class="card-body p-3" style="width:1050px; padding-right: 10px;">
+                <div class="row" style="width:1050px; padding-right: 10px;">
+                  <div class="col-8" style="width:1050px; padding-right: 10px;">
+                    <div class="numbers" style="width:1050px; padding-right: 10px;">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Description</p>
+                      <h5 class="font-weight-bolder mb-0">
+                        {% if data %}
+                          <span class="text-danger text-sm font-weight-bolder">{{ data[14]}}</span>
+                        {% endif %}
+                      </h5>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Number of installs</p>
+                      <h5 class="font-weight-bolder mb-0">
+                        {% if data %}
+                          <span class="text-success text-sm font-weight-bolder">{{ data[12] }}</span>
+                        {% endif %}
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Ratings</p>
+                      <h5 class="font-weight-bolder mb-0">
+                        {% if data %}
+                          <span class="text-success text-sm font-weight-bolder">{{ data[13] }}</span>
+                        {% endif %}
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Sentiment Analysis</p>
+                      <h5 class="font-weight-bolder mb-0">
+                        <!-- +3,462 -->
+                        {% if data %}
+                        <span class="text-danger text-sm font-weight-bolder">Positive = {{ data[15] }}%</span> <br>
+                        {% endif %}
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Sentiment Analysis</p>
+                      <h5 class="font-weight-bolder mb-0">
+                        {% if data %}
+                          <span class="text-danger text-sm font-weight-bolder">Negative = {{ data[16]}}%</span>
+                        {% endif %}
+                      </h5>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Uni-gram</h5>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  {% if data %}
+                  <canvas id="UniGramChart"></canvas>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Bi-gram</h5>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  {% if data %}
+                    <canvas id="BiGramChart"></canvas>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category">Tri-Gram</h5>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  {% if data %}
+                    <canvas id="TriGramChart"></canvas>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="center">
+          <div class="col-lg-6 col-md-12">
+            <div class="card card-tasks">
+              <div class="card-header ">
+                <h6 class="title d-inline">Latest Reviews</h6>
+               
+              </div>
+              <div class="card-body ">
+                <div class="table-full-width table-responsive">
+                  <table class="table" style='flex: 2 1 auto;'>
+                    <tbody>
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[0] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[1] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[2] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[3] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[4] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[5] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[6] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[7] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[8] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[9] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+
+                      <tr>
+                        <td>
+                          
+                        </td>
+                        <td>
+                          {% if data %}
+                            <p class="title">{{ data[10] }}</p>
+                          {% endif %}
+                        </td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+  
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/core/jquery.min.js') }}"></script>
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}" ></script>
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/core/bootstrap.min.js') }}" ></script>
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- Place this tag in your head or just before your close body tag. -->
+  
+  <!-- Chart JS -->
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/plugins/chartjs.min.js') }}" ></script>
+  <!--  Notifications Plugin    -->
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/plugins/bootstrap-notify.js') }}" ></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script type=text/javascript src="{{ url_for('static', filename='assets/js/black-dashboard.min.js') }}" ></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script type=text/javascript src="{{ url_for('static', filename='assets/demo/demo.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js" integrity="sha512-CWVDkca3f3uAWgDNVzW+W4XJbiC3CH84P2aWZXj+DqI6PNbTzXbl1dIzEHeNJpYSn4B6U8miSZb/hCws7FnUZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <script>
+    
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+    });
+  </script>
+
+  <script type='text/javascript'>
+
+    var _values;
+    var _labels;
+    $(document).ready(function(){
+      $.ajax({
+        url: "/unidata",
+        type: "get",
+        data: {vals: ''},
+        success: function(response) {
+        full_data = JSON.parse(response.payload);
+        _values = full_data.data;
+        _labels = full_data['labels'];
+        UniGramChart(_values,_labels)
+        },
+      });
+    });
+
+    function  UniGramChart(_values, _labels){
+  
+      var ctx = document.getElementById("UniGramChart").getContext("2d");
+
+      var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+      gradientStroke.addColorStop(1, 'rgba(72,72,176,0.2)');
+      gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+      gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+
+      var data = {
+        labels: _labels,
+        datasets: [{
+          label: "Frequency",
+          fill: true,
+          backgroundColor: gradientStroke,
+          borderColor: '#d048b6',
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: '#d048b6',
+          pointBorderColor: 'rgba(255,255,255,0)',
+          pointHoverBackgroundColor: '#d048b6',
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: _values,
+        }]
+      };
+
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: gradientChartOptionsConfigurationWithTooltipPurple
+      });
+    }
+  </script>
+
+  
+<script type="text/javascript">
+  var _values;
+  var _labels;
+  $(document).ready(function(){
+    $.ajax({
+      url: "/bidata",
+      type: "get",
+      data: {vals: ''},
+      success: function(response) {
+      full_data = JSON.parse(response.payload);
+      _values = full_data.data;
+      _labels = full_data['labels'];
+      BiGramChart(_values,_labels)
+      
+      },
+    });
+    
+  });
+
+  function  BiGramChart(_values, _labels){
+    var ctx = document.getElementById("BiGramChart").getContext("2d");
+ 
+    var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+ 
+    gradientStroke.addColorStop(1, 'rgba(29,140,248,0.2)');
+    gradientStroke.addColorStop(0.4, 'rgba(29,140,248,0.0)');
+    gradientStroke.addColorStop(0, 'rgba(29,140,248,0)'); //blue colors
+
+    new Chart(document.getElementById("BiGramChart"), {
+      type: 'bar',
+      responsive: true,
+      legend: {
+        display: false
+      },
+      data: {
+        labels:_labels,
+        datasets: [{
+          label: "Frequency",
+          fill: true,
+          backgroundColor: gradientStroke,
+          hoverBackgroundColor: gradientStroke,
+          borderColor: '#1f8ef1',
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          data: _values,
+        }]
+      },
+      options: gradientBarChartConfiguration
+     
+    });
+  }
+  </script>
+
+
+  <script type='text/javascript'>
+    
+    var _values;
+    var _labels;
+    $(document).ready(function(){
+      $.ajax({
+        url: "/tridata",
+        type: "get",
+        data: {vals: ''},
+        success: function(response) {
+        full_data = JSON.parse(response.payload);
+        _values = full_data.data;
+        _labels = full_data['labels'];
+        TriGramChart(_values,_labels)
+        console.log(_values)
+        },
+      });
+      
+    });
+
+    function  TriGramChart(_values, _labels){
+      var ctxGreen = document.getElementById("TriGramChart").getContext("2d");
+
+      var gradientStroke = ctxGreen.createLinearGradient(0, 230, 0, 50);
+
+      gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
+      gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); //green colors
+      gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
+
+      var data = {
+        labels: _labels,
+        datasets: [{
+          label: "Frequency",
+          fill: true,
+          backgroundColor: gradientStroke,
+          borderColor: '#00d6b4',
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: '#00d6b4',
+          pointBorderColor: 'rgba(255,255,255,0)',
+          pointHoverBackgroundColor: '#00d6b4',
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: _values,
+        }]
+      };
+
+      var myChart = new Chart(document.getElementById("TriGramChart"), {
+        type: 'bar',
+        data: data,
+        options: gradientChartOptionsConfigurationWithTooltipGreen
+
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>
